@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -86,6 +86,7 @@ export default function NewInvoicePage() {
   }
 
   return (
+    <Suspense>
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Nowa faktura</h1>
@@ -346,5 +347,6 @@ export default function NewInvoicePage() {
         </CardContent>
       </Card>
     </div>
+    </Suspense>
   )
 }
