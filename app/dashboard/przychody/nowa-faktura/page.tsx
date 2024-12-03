@@ -1,23 +1,23 @@
 "use client"
 
-import { useState, Suspense } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { cn } from "@/lib/utils"
-import { documentTypes } from "../data"
-import { countries } from "@/lib/constants/invoice"
-import { InvoiceItem, calculateValues, createEmptyInvoiceItem } from "@/lib/utils/invoice"
-import { InvoiceItems } from "@/components/dashboard/invoice/invoice-items"
-import { Card, CardContent } from "@/components/ui/card"
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { documentTypes } from "../data";
+import { countries } from "@/lib/constants/invoice";
+import { InvoiceItem, calculateValues, createEmptyInvoiceItem } from "@/lib/utils/invoice";
+import { InvoiceItems } from "@/components/dashboard/invoice/invoice-items";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function NewInvoicePage() {
+function NewInvoicePage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
@@ -86,7 +86,6 @@ export default function NewInvoicePage() {
   }
 
   return (
-    <Suspense>
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Nowa faktura</h1>
@@ -347,6 +346,14 @@ export default function NewInvoicePage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function NewInvoicePageWrap(){
+  return (
+    // You could have a loading skeleton as the `fallback` too
+    <Suspense>
+      <NewInvoicePage />
     </Suspense>
   )
 }
